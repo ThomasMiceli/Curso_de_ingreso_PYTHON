@@ -49,17 +49,59 @@ class App(customtkinter.CTk):
         self.btn_dividir.grid(row=5, pady=10, columnspan=2, sticky="nsew")
 
     def btn_sumar_on_click(self):
-        pass
+        
+        operando1_str = self.txt_operador_a.get()
+        operando2_str = self.txt_operador_b.get()
+
+        operando1 = int(operando1_str)
+        operando2 = int(operando2_str)
+
+
+        resultado = operando1 + operando2
+
+        alert('Mensaje', 'El resultado de la suma entre ' + operando1_str + ' y ' + operando2_str + ' es igual a ' + str(resultado))
+
+
 
     def btn_restar_on_click(self):
-        pass
+        
+        operando1_str = self.txt_operador_a.get()
+        operando2_str = self.txt_operador_b.get()
+
+        operando1 = int(operando1_str)
+        operando2 = int(operando2_str)
+
+        resultado = operando1 - operando2
+
+        alert('Mensaje', 'El resultado de la resta entre ' + operando1_str + ' y ' + operando2_str + ' es igual a ' + str(resultado))
+
 
     def btn_multiplicar_on_click(self):
-        pass
+        
+        operando1_str = self.txt_operador_a.get()
+        operando2_str = self.txt_operador_b.get()
+
+        operando1 = int(operando1_str)
+        operando2 = int(operando2_str)
+
+        resultado = operando1 * operando2
+
+        alert('Mensaje', 'El resultado de la resta entre ' + operando1_str + ' y ' + operando2_str + ' es igual a ' + str(resultado))
+
 
     def btn_dividir_on_click(self):
-        pass
         
+        operando1_str = self.txt_operador_a.get()
+        operando2_str = self.txt_operador_b.get()
+
+        operando1 = int(operando1_str)
+        operando2 = int(operando2_str)
+
+        resultado = operando1 / operando2
+
+        alert('Mensaje', 'El resultado de la resta entre ' + operando1_str + ' y ' + operando2_str + ' es igual a ' + str(resultado))
+
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

@@ -39,7 +39,17 @@ class App(customtkinter.CTk):
 
 
     def btn_sumar_on_click(self):
-        pass
+        
+        operando1_str = self.txt_operador_a.get()
+        operando2_str = self.txt_operador_b.get()
+
+        operando1 = int(operando1_str)
+        operando2 = int(operando2_str)
+
+        resultado = operando1 + operando2
+
+        alert('Saludo','La suma entre ' + operando1_str + ' y ' + operando2_str + ' es igual a ' + str(resultado))
+
      
         
 if __name__ == "__main__":

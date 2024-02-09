@@ -52,13 +52,49 @@ class App(customtkinter.CTk):
         self.btn_total_iva.grid(row=5, pady=10, columnspan=2, sticky="nsew")
 
     def btn_total_on_click(self):
-        pass
+        
+        producto1_str = self.txt_importe_1.get()
+        producto2_str = self.txt_importe_2.get()
+        producto3_str = self.txt_importe_3.get()
+
+        producto1 = int(producto1_str)
+        producto2 = int(producto2_str)
+        producto3 = int(producto3_str)
+
+        resultado = producto1 + producto2 + producto3
+
+        alert('Total', 'El total de la suma de los tres productos es ' + str(resultado))
 
     def btn_promedio_on_click(self):
-        pass
+        
+        producto1_str = self.txt_importe_1.get()
+        producto2_str = self.txt_importe_2.get()
+        producto3_str = self.txt_importe_3.get()
+
+        producto1 = int(producto1_str)
+        producto2 = int(producto2_str)
+        producto3 = int(producto3_str)
+
+        resultado = (producto1 + producto2 + producto3) / 3
+
+        alert('Promedio', 'El promedio entre los tres productos es ' + str(resultado))
 
     def btn_total_iva_on_click(self):
-        pass      
+
+        producto1_str = self.txt_importe_1.get()
+        producto2_str = self.txt_importe_2.get()
+        producto3_str = self.txt_importe_3.get()
+
+        producto1 = int(producto1_str)
+        producto2 = int(producto2_str)
+        producto3 = int(producto3_str)
+        
+        iva = (21)
+        total = producto1 + producto2 + producto3
+        
+        resultado = (producto1 + producto2 + producto3) * iva / 100 + total
+
+        alert('Total c/IVA', 'El total de la suma de los tres productos mas el IVA es ' + str(resultado))    
     
 if __name__ == "__main__":
     app = App()

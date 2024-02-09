@@ -46,9 +46,9 @@ class App(customtkinter.CTk):
         sueldo = int(sueldo_str)
         incremento = int(incremento_str)
 
-        resultado = sueldo % incremento + sueldo
+        resultado = sueldo * incremento / 100 + sueldo
 
-        alert('SUELDO', 'El sueldo luego del inremento es ' + str(resultado))
+        alert('SUELDO', 'El sueldo luego del inremento del ' + str(incremento) + '% ' + 'es ' + str(resultado))
         
     
 if __name__ == "__main__":

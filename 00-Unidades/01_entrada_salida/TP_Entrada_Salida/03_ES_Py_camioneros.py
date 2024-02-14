@@ -57,7 +57,7 @@ class App(customtkinter.CTk):
 
         mensaje = 'Se necesitan ' + str(redondeo) + ' camiones'
 
-        alert("TP_E/S_3", mensaje)
+        alert("Titulo", mensaje)
 
     def btn_tiempo_llegada_on_click(self):
         
@@ -71,7 +71,7 @@ class App(customtkinter.CTk):
 
         mensaje = 'Tomara ' + str(redondeo) + ' hs en llegar al destino'
 
-        alert("TP_E/S_3", mensaje)
+        alert("Titulo", mensaje)
     
     
 if __name__ == "__main__":

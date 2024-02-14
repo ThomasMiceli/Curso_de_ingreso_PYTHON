@@ -48,10 +48,32 @@ class App(customtkinter.CTk):
         self.btn_convertir_f_c.grid(row=4, pady=10, columnspan=2, sticky="nsew")
     
     def btn_convertir_c_f_on_click(self):
-        pass
+        
+        temperaturaF_str = self.txt_temperatura_f.get()
+
+        temperaturaF = int(temperaturaF_str)
+
+        resultado = (temperaturaF - (32)) * (5/9) 
+
+        total = round(resultado,2)
+
+        alert('Titulo', 'La temperatura en grados °F es ' + str(total))
+
+
 
     def btn_convertir_f_c_on_click(self):
-        pass
+        
+        temperaturaC_str = self.txt_temperatura_c.get()
+
+        temperaturaC = int(temperaturaC_str)
+
+        resultado = (temperaturaC * (9/5)) +(32)
+
+        total = round(resultado,2)
+
+        alert('Titulo', 'La temperatura en grados °C es ' + str(total))
+
+
     
     
 if __name__ == "__main__":

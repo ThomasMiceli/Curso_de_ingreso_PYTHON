@@ -32,8 +32,18 @@ class App(customtkinter.CTk):
 
 
     def btn_mostrar_on_click(self):
-        pass  
-            
+        
+        num_random = random.randint(1, 10)
+
+        if (num_random >= 6):  
+            mensaje = "Promoción directa, la nota es " + str(num_random)
+        elif (num_random == 4 or num_random == 5):
+            mensaje = "Aprobado, la nota es " + str(num_random)
+        else:
+            mensaje = "Desaprobado, la nota es " + str(num_random)
+        
+        alert("EJERCICIO 10", mensaje)
+        
 
 if __name__ == "__main__":
     app = App()

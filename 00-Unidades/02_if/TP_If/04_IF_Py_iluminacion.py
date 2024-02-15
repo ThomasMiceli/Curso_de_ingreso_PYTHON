@@ -43,7 +43,64 @@ class App(customtkinter.CTk):
 
 
     def btn_calcular_on_click(self):
-        pass
+        
+        marca = self.combobox_marca.get()
+        cantidad = self.combobox_cantidad.get()
+
+        if (cantidad == "6"):
+            mensaje = (800 * 6) * 0.50
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (cantidad == "7"):
+            mensaje = (800 * 7) * 0.50
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (cantidad == "8"):
+            mensaje = (800 * 8) * 0.50
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (cantidad == "9"):
+            mensaje = (800 * 9) * 0.50
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (cantidad == "10"):
+            mensaje = (800 * 10) * 0.50
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (cantidad == "11"):
+            mensaje = ((800 * 11) * 0.50) - 4400 * 0.05
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (cantidad == "12"):
+            mensaje = ((800 * 12) * 0.50) - 4800 * 0.05
+            alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (marca == 'ArgentinaLuz'):
+            if (cantidad == '5'):
+                mensaje = 4000 - (800 * 5) * 0.40
+                alert('Titulo', 'El precio final es ' + str(mensaje))
+        else:
+            if (cantidad == '5'):
+                mensaje = 4000 - (800 * 5) * 0.30
+                alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (marca == 'ArgentinaLuz' or marca == 'FelipeLamparas'):
+            if (cantidad == '4'):
+                mensaje = 3200 - (800 * 4) * 25 / (100)
+                alert('Titulo', 'El precio final es ' + str(mensaje))
+        else:
+            if (cantidad == '4'):
+                mensaje = 3200 - (800 * 4) * 20 / (100)
+                alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (marca == 'ArgentinaLuz'):
+            if (cantidad == '3'):
+                mensaje = 2400 - (800 * 3) * 0.15
+                alert('Titulo', 'El precio final es ' + str(mensaje))
+        if (marca == 'FelipeLamparas'):
+            if (cantidad == '3'):
+                mensaje = 2400 - (800 * 3) * 0.10
+                alert('Titulo', 'El precio final es ' + str(mensaje))
+        else:
+            if (cantidad == '3'):
+                mensaje = 2400 - (800 * 3) * 0.05
+                alert('Titulo', 'El precio final es ' + str(mensaje))       
+
+        
+
+
+
         
     
 if __name__ == "__main__":

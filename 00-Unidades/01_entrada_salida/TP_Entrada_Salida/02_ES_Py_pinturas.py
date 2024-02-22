@@ -49,11 +49,11 @@ class App(customtkinter.CTk):
     
     def btn_convertir_c_f_on_click(self):
         
-        temperaturaF_str = self.txt_temperatura_f.get()
+        temperaturaC_str = self.txt_temperatura_c.get()
 
-        temperaturaF = int(temperaturaF_str)
+        temperaturaC = int(temperaturaC_str)
 
-        resultado = (temperaturaF - (32)) * (5/9) 
+        resultado = (temperaturaC * 9/5) + 32
 
         total = round(resultado,2)
 
@@ -62,12 +62,12 @@ class App(customtkinter.CTk):
 
 
     def btn_convertir_f_c_on_click(self):
-        
-        temperaturaC_str = self.txt_temperatura_c.get()
 
-        temperaturaC = int(temperaturaC_str)
+        temperaturaF_str = self.txt_temperatura_f.get()
 
-        resultado = (temperaturaC * (9/5)) +(32)
+        temperaturaF = int(temperaturaF_str)
+
+        resultado = (temperaturaF - 32) * 5/9
 
         total = round(resultado,2)
 

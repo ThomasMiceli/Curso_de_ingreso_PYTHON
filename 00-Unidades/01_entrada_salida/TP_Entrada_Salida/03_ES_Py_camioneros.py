@@ -3,6 +3,7 @@ from tkinter.messagebox import showinfo as alert
 from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
+import math
 
 '''
 nombre:
@@ -38,7 +39,7 @@ class App(customtkinter.CTk):
         
         self.txt_kilometros = customtkinter.CTkEntry(master=self)
         self.txt_kilometros.grid(row=1, column=1)
-       
+
         self.btn_cantidad_camiones = customtkinter.CTkButton(master=self, text="Calcular cantidad de camiones", command=self.btn_cantidad_camiones_on_click)
         self.btn_cantidad_camiones.grid(row=3, pady=10, padx=30 ,columnspan=2, sticky="nsew")
         
@@ -51,9 +52,9 @@ class App(customtkinter.CTk):
 
         toneladas = int(toneladas_str)
 
-        camiones = toneladas / 3.5
+        camiones = (toneladas / 3.5) / 1000
 
-        redondeo = round(camiones,0)
+        redondeo = math.ceil(camiones)
 
         mensaje = 'Se necesitan ' + str(redondeo) + ' camiones'
 
@@ -65,11 +66,9 @@ class App(customtkinter.CTk):
 
         kilometros = int(kilometros_str)
 
-        tiempo = kilometros / 90
+        tiempo = kilometros / 100
 
-        redondeo = round(tiempo,0)
-
-        mensaje = 'Tomara ' + str(redondeo) + ' hs en llegar al destino'
+        mensaje = 'Tomara ' + str(tiempo) + ' hs en llegar al destino'
 
         alert("Titulo", mensaje)
     

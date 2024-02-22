@@ -37,7 +37,59 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        
+        suma_negativos = 0
+        suma_positivos = 0
+        cantidad_positivos = 0
+        cantidad_negativos = 0
+        cantidad_ceros = 0
+        contador = 1
+        contador_iteracion = 0
+        
+        
+        while True:
+            numero = prompt('Ingrese un número', 'Ingrese aqui')
+            if numero == None or numero == '':
+                break
+            numeroParseado = int(numero)
+
+            if contador == 1 or numeroParseado < numero_minimo:
+                numero_minimo = numeroParseado
+                contador_iteracion = contador
+                contador += 1
+            
+            if contador == 1 or numeroParseado > numero_maximo:
+                numero_maximo = numeroParseado
+                contador_iteracion = contador
+                contador += 1
+                
+                
+            if numeroParseado < 0:
+                suma_negativos += numeroParseado
+                cantidad_negativos += 1
+            elif numeroParseado > 0: 
+                suma_positivos += numeroParseado
+                cantidad_positivos += 1
+            else:
+                cantidad_ceros += 1
+                
+        diferencia = cantidad_positivos - cantidad_negativos
+
+        if diferencia < 0:
+            diferencia *= -1
+
+
+        resultado = (
+            'A. Suma acumulada de los negativos:' + str(suma_negativos) + '\n' +
+            'B. Suma acumulada de los positivos:' + str(suma_positivos) + '\n' +
+            'C. Cantidad de números positivos ingresados:' + str(cantidad_positivos) + '\n' +
+            'D. Cantidad de números negativos ingresados:' + str(cantidad_negativos) + '\n' +
+            'E. Cantidad de ceros:' + str(cantidad_ceros) + '\n' +
+            'F. Diferencia entre la cantidad de los números positivos ingresados y los negativos:' + str(diferencia) + '\n' +
+            'G. El valor maximo es:' + str(numero_maximo) + '\n' +
+            'H. El valor minimo es:' + str(numero_minimo))
+        
+        alert('Resultado', resultado)
 
     
 if __name__ == "__main__":

@@ -1,47 +1,44 @@
-import tkinter
-from tkinter.messagebox import showinfo as alert
-from tkinter.messagebox import askyesno as question
-from tkinter.simpledialog import askstring as prompt
-import customtkinter
+function comenzarIngreso() {
+    let numeros = [];
+    let sumaNegativos = 0;
+    let sumaPositivos = 0;
+    let cantidadPositivos = 0;
+    let cantidadNegativos = 0;
+    let cantidadCeros = 0;
 
+    while (true) {
+        let numero = prompt("Ingrese un número (presione Cancelar para terminar)");
 
-'''
-nombre:
-apellido:
----
-Ejercicio: while_04
----
-Enunciado:
-Al presionar el botón ‘Validar número’, mediante prompt solicitar al usuario que ingrese un número. 
-Se deberá validar que se encuentre entre 0 y 9 inclusive. En caso no coincidir con el rango, 
-volverlo a solicitar hasta que la condición se cumpla.
-'''
+    if (numero === null) {
+    break;
+    }
 
+    let numeroParseado = parseFloat(numero);
 
-class App(customtkinter.CTk):
-    
-    def __init__(self):
-        super().__init__()
+    if (isNaN(numeroParseado)) {
+        alert("Error: Por favor ingrese un número válido");
+        continue;
+    }
 
-        self.title("UTN FRA")
-        
-        self.btn_validar_numero = customtkinter.CTkButton(master=self, text="Ingresar", command=self.btn_validar_numero_on_click)
-        self.btn_validar_numero.grid(row=2, pady=20, columnspan=2, sticky="nsew")
-        
-    
-    def btn_validar_numero_on_click(self):
-        
-        while True:
-            numero = prompt('Titulo', 'Ingrese un numero')
-            numero = int(numero)
-            if numero > 0 and numero < 9:
-                alert('Titulo', 'El numero es correcto')
-                break
-            else:
-                alert('Titulo', 'El numero es incorrecto')
-            
+    numeros.push(numeroParseado);
 
-if __name__ == "__main__":
-    app = App()
-    app.geometry("300x300")
-    app.mainloop()
+    if (numeroParseado < 0) {
+        sumaNegativos += numeroParseado;
+        cantidadNegativos++;
+    } else if (numeroParseado > 0) {
+        sumaPositivos += numeroParseado;
+        cantidadPositivos++;
+    } else {
+        cantidadCeros++;
+    }
+    }
+
+    let diferencia = cantidadPositivos - cantidadNegativos;
+
+    alert("Resultados:\n\n" +
+        "A. Suma acumulada de los negativos: " + sumaNegativos + "\n" +
+        "B. Suma acumulada de los positivos: " + sumaPositivos + "\n" +
+        "C. Cantidad de números positivos ingresados: " + cantidadPositivos + "\n" +
+        "D. Cantidad de números negativos ingresados: " + cantidadNegativos + "\n" +
+        "E. Cantidad de ceros: " + cantidadCeros + "\n" +
+        "F. Diferencia entre la cantidad de los números positivos ingresados y los negativos: " + diferencia);

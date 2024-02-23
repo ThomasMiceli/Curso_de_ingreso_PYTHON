@@ -54,39 +54,43 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        apellido = self.txt_apellido.get()
-        edad = self.txt_edad.get()
-        tipo = self.txt_tipo.get()
-        legajo = self.txt_legajo.get()
+        apellido = prompt("Risin BTL", "Ingrese su apellido")
+        edad = prompt("Rising BTL", "Ingrese su edad")
+        tipo = prompt("Rising BTL", "Ingrese su estado civil")
+        legajo = prompt("Rising BTL", "Ingrese su numero de legajo")
 
         if not apellido or not edad or not tipo or not legajo:
-            alert(self, title5="Error", message="Todos los campos son obligatorios").show()
+            alert("Error", "Todos los campos son obligatorios")
             return
 
         try:
             edad = int(edad)
             if edad < 18 or edad > 90:
-                alert(self, title0="Error", message="La edad debe estar entre 18 y 90 años inclusive").show()
+                alert("Error", "La edad debe estar entre 18 y 90 años inclusive")
                 return
         except ValueError:
-            alert(self, title="Error", message="La edad debe ser un número entero").show()
+            alert("Error", "La edad debe ser un número entero")
             return
 
-        if tipo not in ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]:
-            alert(self, title1="Error", message="El estado civil debe ser Soltero/a, Casado/a, Divorciado/a o Viudo/a").show()
+        if tipo != ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]:
+            alert("Error", "El estado civil debe ser Soltero/a, Casado/a, Divorciado/a o Viudo/a")
             return
 
-        if not legajo.isdigit() or len(legajo) != 4:
-            alert(self, title2="Error", message="El legajo debe ser un número de 4 dígitos sin ceros a la izquierda").show()
+        if not legajo.isdigit() or int(legajo) >= 1000 and int(legajo) <= 9999:
+            alert("Error", "El legajo debe ser un número de 4 dígitos sin ceros a la izquierda")
             return
 
-        alert(self, title3="Éxito", message=f"La persona {apellido} con legajo {legajo} y estado {tipo} ha sido validada").show()
+        alert("Éxito", 'La persona' + apellido + 'con legajo' + legajo + 'y estado' + tipo + 'ha sido validada')
 
 
-        self.txt_apellido.delete(0, tk.END)
-        self.txt_edad.delete(0, tk.END)
-        self.txt_tipo.delete(0, tk.END)
-        self.txt_legajo.delete(0, tk.END)
+        self.txt_apellido.delete(0, 'end')
+        self.txt_apellido.insert(0, apellido)
+        self.txt_edad.delete(0, 'end')
+        self.txt_edad.insert(0, edad)
+        self.txt_tipo.delete(0, 'end')
+        self.txt_tipo.insert(0, tipo)
+        self.txt_legajo.delete(0, 'end')
+        self.txt_legajo.insert(0, legajo)
         
         
 

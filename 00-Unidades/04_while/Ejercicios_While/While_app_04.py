@@ -1,44 +1,44 @@
-function comenzarIngreso() {
-    let numeros = [];
-    let sumaNegativos = 0;
-    let sumaPositivos = 0;
-    let cantidadPositivos = 0;
-    let cantidadNegativos = 0;
-    let cantidadCeros = 0;
+import tkinter
+from tkinter.messagebox import showinfo as alert
+from tkinter.messagebox import askyesno as question
+from tkinter.simpledialog import askstring as prompt
+import customtkinter
 
-    while (true) {
-        let numero = prompt("Ingrese un número (presione Cancelar para terminar)");
 
-    if (numero === null) {
-    break;
-    }
+'''
+nombre: Ignacio Agustin
+apellido: Herrera
+---
+Ejercicio: while_04
+---
+Enunciado:
+Al presionar el botón ‘Validar número’, mediante prompt solicitar al usuario que ingrese un número. 
+Se deberá validar que se encuentre entre 0 y 9 inclusive. En caso no coincidir con el rango, 
+volverlo a solicitar hasta que la condición se cumpla.
+'''
 
-    let numeroParseado = parseFloat(numero);
 
-    if (isNaN(numeroParseado)) {
-        alert("Error: Por favor ingrese un número válido");
-        continue;
-    }
+class App(customtkinter.CTk):
+    
+    def __init__(self):
+        super().__init__()
 
-    numeros.push(numeroParseado);
-
-    if (numeroParseado < 0) {
-        sumaNegativos += numeroParseado;
-        cantidadNegativos++;
-    } else if (numeroParseado > 0) {
-        sumaPositivos += numeroParseado;
-        cantidadPositivos++;
-    } else {
-        cantidadCeros++;
-    }
-    }
-
-    let diferencia = cantidadPositivos - cantidadNegativos;
-
-    alert("Resultados:\n\n" +
-        "A. Suma acumulada de los negativos: " + sumaNegativos + "\n" +
-        "B. Suma acumulada de los positivos: " + sumaPositivos + "\n" +
-        "C. Cantidad de números positivos ingresados: " + cantidadPositivos + "\n" +
-        "D. Cantidad de números negativos ingresados: " + cantidadNegativos + "\n" +
-        "E. Cantidad de ceros: " + cantidadCeros + "\n" +
-        "F. Diferencia entre la cantidad de los números positivos ingresados y los negativos: " + diferencia);
+        self.title("UTN FRA")
+        
+        self.btn_validar_numero = customtkinter.CTkButton(master=self, text="Ingresar", command=self.btn_validar_numero_on_click)
+        self.btn_validar_numero.grid(row=2, pady=20, columnspan=2, sticky="nsew")
+        
+    
+    def btn_validar_numero_on_click(self):
+        
+        numero_str = prompt("Titulo", "Ingrese un numero entre 0 y 9")
+        numero = int(numero_str)
+        while (numero < 0 or numero > 9):
+            numero_str = prompt("Titulo", "Ingrese un numero entre 0 y 9")
+            numero = int(numero_str)
+        
+    
+if __name__ == "__main__":
+    app = App()
+    app.geometry("300x300")
+    app.mainloop()

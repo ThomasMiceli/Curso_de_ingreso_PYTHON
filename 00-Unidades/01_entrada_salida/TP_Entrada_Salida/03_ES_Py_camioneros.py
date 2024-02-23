@@ -52,7 +52,7 @@ class App(customtkinter.CTk):
 
         toneladas = int(toneladas_str)
 
-        camiones = (toneladas / 3.5) / 1000
+        camiones = toneladas / 3.5
 
         redondeo = math.ceil(camiones)
 

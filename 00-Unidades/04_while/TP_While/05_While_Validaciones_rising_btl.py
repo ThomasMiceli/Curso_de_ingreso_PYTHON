@@ -59,28 +59,39 @@ class App(customtkinter.CTk):
         tipo = prompt("Rising BTL", "Ingrese su estado civil")
         legajo = prompt("Rising BTL", "Ingrese su numero de legajo")
 
-        if not apellido or not edad or not tipo or not legajo:
-            alert("Error", "Todos los campos son obligatorios")
-            return
 
-        try:
-            edad = int(edad)
-            if edad < 18 or edad > 90:
-                alert("Error", "La edad debe estar entre 18 y 90 años inclusive")
-                return
-        except ValueError:
-            alert("Error", "La edad debe ser un número entero")
-            return
+        while apellido == None or not (apellido.isalpha()):
+            apellido = prompt("ERROR", "Apellido invalido, reingrese su apellido")
+            if apellido == None:
+                break
+            else:
+                continue
+            
+            
 
-        if tipo != ["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"]:
-            alert("Error", "El estado civil debe ser Soltero/a, Casado/a, Divorciado/a o Viudo/a")
-            return
+        while edad == None or not (edad.isdigit() and (int(edad) >= 18 and int(edad) <= 90)):
+            edad = prompt("ERROR", "Edad invalida, reingrese su edad")
+            if edad == None:
+                break
+            else:
+                continue
+                
 
-        if not legajo.isdigit() or int(legajo) >= 1000 and int(legajo) <= 9999:
-            alert("Error", "El legajo debe ser un número de 4 dígitos sin ceros a la izquierda")
-            return
+        while tipo == None or not (tipo.isalpha() and tipo == 'Soltero' or tipo == 'Soltera' or tipo == 'Casado' or tipo == 'Casada' or tipo == 'Divorciado' or tipo == 'Divorciada' or tipo == 'Viudo' or tipo == 'Viuda'):
+            tipo = prompt("ERROR", "Estado civil invalido, reingrese su estado civil")
+            if tipo == None:
+                break
+            else:
+                continue
 
-        alert("Éxito", 'La persona' + apellido + 'con legajo' + legajo + 'y estado' + tipo + 'ha sido validada')
+        while legajo == None or not (legajo.isdigit() and (int(legajo) >= 1000 and int(legajo) <= 9999)):
+            legajo = prompt("ERROR", "N° de legajo invalido, reingrese su N° de legajo")
+            if legajo == None:
+                break
+            else:
+                continue
+
+        alert("Éxito", 'La persona ' + apellido + ' de ' + str(edad) + ' años, con legajo ' + legajo + ' y estado ' + tipo + ' ha sido validada')
 
 
         self.txt_apellido.delete(0, 'end')

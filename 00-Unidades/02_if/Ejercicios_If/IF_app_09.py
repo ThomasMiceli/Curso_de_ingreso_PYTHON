@@ -29,8 +29,8 @@ class App(customtkinter.CTk):
     def btn_mostrar_on_click(self):
         
         num_random = random.randint(1, 10)
-        
-        alert("EJERCICIO 9", num_random)
+
+        alert("Titulo", num_random)
         
 
 if __name__ == "__main__":

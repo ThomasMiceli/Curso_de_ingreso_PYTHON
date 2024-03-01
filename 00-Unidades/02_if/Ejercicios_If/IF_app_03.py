@@ -39,16 +39,14 @@ class App(customtkinter.CTk):
 
         edad = int(edad_str)
 
-        
-
         if (edad >= 18):
 
-            mensaje = "MAYOR"  
+            mensaje = "Mayor"  
         else:
             
-            mensaje = "MENOR"
+            mensaje = "Menor"
 
-        alert("EJERCICIO 3", mensaje)
+        alert("Titulo", mensaje)
 
         
         

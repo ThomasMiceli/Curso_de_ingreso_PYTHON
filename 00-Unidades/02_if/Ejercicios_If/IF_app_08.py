@@ -50,8 +50,8 @@ class App(customtkinter.CTk):
         if (estado == "Soltero"):
             if (edad >= 18):
                 mensaje = "Es soltero y no es menor"
-                
-        alert("EJERCICIO 8", mensaje)
+
+        alert("Titulo", mensaje)
 
         
         

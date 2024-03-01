@@ -44,7 +44,7 @@ class App(customtkinter.CTk):
         flag = True
         while True:
             numero = prompt("Titulo", "Ingrese un numero")
-            if numero is None:
+            if numero == None:
                 break
             numero = int(numero)
             if flag or numero > maximo:

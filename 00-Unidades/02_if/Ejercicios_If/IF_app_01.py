@@ -41,8 +41,8 @@ class App(customtkinter.CTk):
         mensaje = "Usted tiene 18 años"
 
         if (edad == 18):
-            
-            alert("EJERCICIO 1", mensaje)
+
+            alert("Titulo", mensaje)
 
 
          

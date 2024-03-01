@@ -4,60 +4,57 @@ from tkinter.messagebox import askyesno as question
 from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
-'''
-nombre:
-apellido:
----
-Ejercicio: listas_06
----
-Enunciado:
-Al presionar el botón 'INGRESAR' se le solicitará al usuario que ingrese:
-    Edad - Validar (Entre 15 y 90 años).
-    Genero - Validar (Femenino/Masculino/No Binario).
-Luego del ingreso, al presionar el boton 'INFORMAR' mostrar por Dialog Alert:
-    A. Promedio de edad de los masculinos.
-    B. Porcentaje de femeninos mayores de 18 respecto al total de personas.
-    C. Porcentaje de personas de cada genero.
-    D. Informar edad y genero de la persona con menor edad, puede ser mas de una.
-    E. Cuál fue el genero mas ingresado.
-
-Nota: Se podrán hacer como máximo 10 ingresos.
-'''
-
-class App(customtkinter.CTk):
-    
+class Bolsa:
     def __init__(self):
-        super().__init__()
+        self.operaciones = []
 
-        self.title("UTN FRA")
+    def agregar_operacion(self, nombre, monto, tipo_instrumento, cantidad):
+        if monto < 10000:
+            print("El monto de la operación debe ser mayor o igual a $10000")
+            return
+        if cantidad < 0:
+            print("La cantidad de instrumentos debe ser mayor o igual a 0")
+            return
+        self.operaciones.append({
+            "nombre": nombre,
+            "monto": monto,
+            "tipo_instrumento": tipo_instrumento,
+            "cantidad": cantidad
+        })
 
-        self.label = customtkinter.CTkLabel(master=self, text="Edad")
-        self.label.grid(row=0, column=0, padx=20, pady=10)
-        self.txt_edad = customtkinter.CTkEntry(master=self)
-        self.txt_edad.grid(row=0, column=1)
+    def informe_1(self):
+        df = pd.DataFrame(self.operaciones)
+        min_operaciones = df["tipo_instrumento"].value_counts().min()
+        tipo_instrumento_menos_operado = df["tipo_instrumento"].value_counts().idxmin()
+        print(f"El tipo de instrumento que menos se operó en total es {tipo_instrumento_menos_operado} con {min_operaciones} operaciones.")
 
-        self.label2 = customtkinter.CTkLabel(master=self, text="Genero")
-        self.label2.grid(row=1, column=0, padx=20, pady=10)
-        self.txt_genero = customtkinter.CTkEntry(master=self)
-        self.txt_genero.grid(row=1, column=1)
+    def informe_2(self):
+        df = pd.DataFrame(self.operaciones)
+        usuarios_compraron_MEP = df[(df["tipo_instrumento"] == "MEP") & (df["monto"] >= 50000) & (df["monto"] <= 200000)]["nombre"].nunique()
+        print(f"{usuarios_compraron_MEP} usuarios compraron entre 50 y 200 MEP.")
 
-        self.btn_ingresar = customtkinter.CTkButton(master=self, text="INGRESAR", command=self.btn_ingresar_on_click)
-        self.btn_ingresar.grid(row=2, pady=10, padx=30,columnspan=2, sticky="nsew")
+    def informe_3(self):
+        df = pd.DataFrame(self.operaciones)
+        usuarios_no_compraron_CEDEAR = df[df["tipo_instrumento"] != "CEDEAR"]["nombre"].nunique()
+        print(f"{usuarios_no_compraron_CEDEAR} usuarios no compraron CEDEAR.")
 
-        self.btn_informar = customtkinter.CTkButton(master=self, text="INFORMAR", command=self.btn_informar_on_click)
-        self.btn_informar.grid(row=3, pady=10, padx=30,columnspan=2, sticky="nsew")
+    def informe_4(self):
+        df = pd.DataFrame(self.operaciones)
+        usuario_compro_BONOS_CEDEAR = df[(df["tipo_instrumento"] == "BONOS") | (df["tipo_instrumento"] == "CEDEAR")]
+        if not usuario_compro_BONOS_CEDEAR.empty:
+            nombre_inversion = usuario_compro_BONOS_CEDEAR.iloc[0]["nombre"]
+            cantidad_invertida = usuario_compro_BONOS_CEDEAR["monto"].sum()
+            print(f"El nombre y cantidad invertida del primer usuario que compró BONOS o CEDEAR es {nombre_inversion} con ${cantidad_invertida}.")
+        else:
+            print("No hay usuarios que hayan comprado BONOS o CEDEAR.")
 
-        self.lista_edades = []
-        self.lista_generos = []
+    def informe_5(self):
+        df = pd.DataFrame(self.operaciones)
+        usuario_invertio_menos_dinero = df[df["monto"] == df["monto"].min()]["nombre"].iloc[0]
+        posicion_usuario = df[df["nombre"] == usuario_invertio_menos_dinero].index[0]
+        print(f"El nombre y posición del usuario que invirtió menos dinero es {usuario_invertio_menos_dinero} en la posición {posicion_usuario}.")
 
-
-    def btn_ingresar_on_click(self):
-        pass
-
-    def btn_informar_on_click(self):
-        pass
-    
-if __name__ == "__main__":
-    app = App()
-    app.geometry("300x300")
-    app.mainloop()
+    def informe_6(self):
+        df = pd.DataFrame(self.operaciones)
+        promedio_dinero_CEDEAR = df[df["tipo_instrumento"] == "CEDEAR"]["monto"].mean()
+        print(f"El promedio de dinero en CEDEAR ingresado en total es ${promedio_dinero_CEDEAR}.")

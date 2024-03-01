@@ -29,8 +29,6 @@ class App(customtkinter.CTk):
         self.btn_mostrar_iteracion.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
     def btn_mostrar_on_click(self):
-
-        marca = prompt('dssdsdsd', 'dsdsds')
         
         iteracion = 0
         contador_aluminio = 0
